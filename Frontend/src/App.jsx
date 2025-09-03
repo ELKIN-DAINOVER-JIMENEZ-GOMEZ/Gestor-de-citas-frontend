@@ -1,34 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+
+import Header from './components/common/Header';
+import ProtectedRoute from './components/auth/ProtectedRouter.jsx';
+
+import LoginPage from './Pages/paginasPublicas/LoginPage.jsx';
+import RegisterPage from './Pages/paginasPublicas/RegisterPage.jsx';
+import DashboardPage from './Pages/paginasPublicas/Dashboard.jsx';
+import ProfilePage from './Pages/paginasPublicas/ProfilePage.jsx';
+import Inicio from './Pages/paginasPublicas/Inicio.jsx'; // Asegúrate de que este componente esté exportado correctamente
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <AuthProvider>
+      <Router>
+        
+        <main>
+          <Routes>
+            {/* Rutas Públicas */}
+            <Route path="/login" element={<><Header /> <LoginPage /></>} />
+            <Route path="/register" element={<> <Header/> <RegisterPage /></>} />
+
+            <Route path="/" element={ <><Header/> <Inicio/></>}/>
+            
+           
+            
+            {/* Rutas Protegidas */}
+            <Route element={<ProtectedRoute />}>
+            <Route path="/administracion/*" element={<LayoutAdministradores />} />
+            <Route path="/Paciente/*" element={<RutasInterfazPaciente />} />
+              <Route path="/dashboard" element={<> <Header/> <DashboardPage /></>} />
+              <Route path="/profile" element={<><Header/><ProfilePage /> </>} />
+            </Route>
+            
+            {/* Ruta para cualquier otra URL no definida */}
+            <Route path="*" element={<h2>404: Página no encontrada</h2>} />
+          </Routes>
+        </main>
+      </Router>
+    </AuthProvider>
   )
 }
 
