@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Send, User, Mail, FileText, AlertCircle, CheckCircle } from 'lucide-react';
 import {MensajeApiService} from '../../services/MensajeApiService';
-import userService from '../../Services/UserService';// Importa el servicio de autenticación para obtener los admins en la base de datos
+import userService from '../../services/UserService';// Importa el servicio de autenticación para obtener los admins en la base de datos
 
 const GestorMensajesPaciente = () => {
   const [formData, setFormData] = useState({
