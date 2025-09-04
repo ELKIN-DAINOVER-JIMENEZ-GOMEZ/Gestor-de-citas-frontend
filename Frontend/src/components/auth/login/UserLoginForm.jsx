@@ -26,8 +26,8 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div className="bg-white py-8 px-6 shadow-xl rounded-2xl border border-gray-100">
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className=" bg-blue-300 py-5 px-7 shadow-xl rounded-2xl border border-gray-100/30 w-full max-w-7xl">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div className="text-center mb-6">
           <div className="mx-auto w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
             <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,7 +94,7 @@ const UserLoginForm = () => {
         </div>
 
         {/* Patient Info Notice */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50/10 border border-blue-200 rounded-lg p-4">
           <div className="flex items-start space-x-2">
             <svg className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

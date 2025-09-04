@@ -48,7 +48,7 @@ const RegisterForm = () => {
         </div>
 
         {/* Registration Form */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8">
+        <form onSubmit={handleSubmit} className="bg-white/50 rounded-2xl shadow-lg p-8">
           <div className="text-center mb-6">
             <h2 className="text-2xl font-semibold text-gray-800 mb-2">Crear Cuenta</h2>
             <p className="text-gray-600">Regístrate para acceder al sistema</p>

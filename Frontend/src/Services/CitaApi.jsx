@@ -27,3 +27,4 @@ const CitaApi = async (citaData) => {
    
   
 }
+export default CitaApi

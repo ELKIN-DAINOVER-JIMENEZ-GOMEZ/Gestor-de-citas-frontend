@@ -11,6 +11,8 @@ import DashboardPage from './Pages/paginasPublicas/Dashboard.jsx';
 import ProfilePage from './Pages/paginasPublicas/ProfilePage.jsx';
 import Inicio from './Pages/paginasPublicas/Inicio.jsx'; // Asegúrate de que este componente esté exportado correctamente
 
+import RutasInterfazPaciente from './Pages/interfazPacientes/RutasInterfazPacientes.jsx';
+import LayoutAdministradores from './Pages/interfazAdministradores/routes/LayoutAdministradores.jsx';
 
 
 function App() {

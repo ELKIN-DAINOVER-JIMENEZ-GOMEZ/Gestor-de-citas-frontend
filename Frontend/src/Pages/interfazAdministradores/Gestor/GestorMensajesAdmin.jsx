@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Send, User, Mail, FileText, AlertCircle, CheckCircle } from 'lucide-react';
 import {MensajeApiService} from '../../../services/MensajeApiService';
-import userService from '../../../Services/UserService';
+import userService from '../../../services/UserService';
 
 const GestorMensajesAdmin = () => {
   const [formData, setFormData] = useState({
