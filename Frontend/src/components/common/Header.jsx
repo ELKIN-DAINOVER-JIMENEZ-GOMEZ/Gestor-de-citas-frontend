@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-
+import { useScroll } from '../hooks/UseScroll';
 const Header = () => {
   const {user, logout} = useAuth() // Simulación de usuario
   const {users, setUser} = useState(); // Estado del usuario
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const {scrollToServicios} = useScroll();
   
   const handleLogout = () => {
     logout();
@@ -19,6 +20,17 @@ const Header = () => {
     alert('Sesión iniciada exitosamente');
     navigate('/pacientes/mis-citas'); // Redirige al dashboard después de iniciar sesión
   };
+
+  const handleServicesClick = () => {
+    // Aquí puedes usar el hook useScroll para hacer scroll a la sección de servicios
+    scrollToServicios('servicios', '/'); 
+  }
+   const handleContactClick = () => {
+    scrollToServicios('contacto', '/');
+   }
+   const handleInicioClick = () => {
+    scrollToServicios('inicio', '/'); 
+   }
 
   return (
     <header className="w-full bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 shadow-xl sticky top-0 z-50 backdrop-blur-sm">
@@ -42,9 +54,9 @@ const Header = () => {
 
           {/* Navegación desktop */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/" className="text-white hover:text-cyan-100 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-white/10">
+            <button onClick={handleInicioClick} className="text-white hover:text-cyan-100 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-white/10">
               Inicio
-            </Link>
+            </button>
             {user ? (
               <>
                 <Link to="/dashboard" className="text-white hover:text-cyan-100 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-white/10">
@@ -58,12 +70,12 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link to="#" className="text-white hover:text-cyan-100 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-white/10">
+               <button onClick={handleServicesClick} className="text-white hover:text-cyan-100 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-white/10">
                   Servicios
-                </Link>
-                <Link to="#" className="text-white hover:text-cyan-100 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-white/10">
+                </button>
+                <button onClick={handleContactClick} className="text-white hover:text-cyan-100 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-white/10">
                   Contacto
-                </Link>
+                </button>
               </>
             )}
           </nav>
@@ -121,9 +133,9 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-blue-700/95 backdrop-blur-sm rounded-lg mt-2 mb-4 shadow-xl border border-blue-500/20">
             <nav className="px-4 py-3 space-y-2">
-              <Link to="#" className="block text-white hover:text-cyan-100 font-medium py-2 px-3 rounded-md hover:bg-white/10 transition-colors">
+              <button onClick={handleInicioClick} className="block text-white hover:text-cyan-100 font-medium py-2 px-3 rounded-md hover:bg-white/10 transition-colors">
                 Inicio
-              </Link>
+              </button>
               {user ? (
                 <>
                   <Link to="/dashboard" className="block text-white hover:text-cyan-100 font-medium py-2 px-3 rounded-md hover:bg-white/10 transition-colors">
@@ -152,12 +164,12 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Link to="#" className="block text-white hover:text-cyan-100 font-medium py-2 px-3 rounded-md hover:bg-white/10 transition-colors">
+                  <button onClick={handleServicesClick} className="block text-white hover:text-cyan-100 font-medium py-2 px-3 rounded-md hover:bg-white/10 transition-colors">
                     Servicios
-                  </Link>
-                  <Link to="#" className="block text-white hover:text-cyan-100 font-medium py-2 px-3 rounded-md hover:bg-white/10 transition-colors">
+                  </button>
+                  <button onClick={handleContactClick} className="block text-white hover:text-cyan-100 font-medium py-2 px-3 rounded-md hover:bg-white/10 transition-colors">
                     Contacto
-                  </Link>
+                  </button>
                   <div className="border-t border-blue-500/30 pt-3 mt-3 space-y-2">
                      <Link to="/login" className="text-white hover:text-cyan-100 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-white/10">
                   iniciar Sesión

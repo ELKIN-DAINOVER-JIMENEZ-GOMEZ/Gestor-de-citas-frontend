@@ -125,12 +125,6 @@ const AdminLoginForm = () => {
               Mantener sesión activa
             </label>
           </div>
-
-          <div className="text-sm">
-            <a href="#" className="font-medium text-purple-600 hover:text-purple-500 transition-colors duration-200">
-              Soporte técnico
-            </a>
-          </div>
         </div>
 
         <div>

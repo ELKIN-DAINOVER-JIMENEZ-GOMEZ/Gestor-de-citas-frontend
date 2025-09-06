@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import UserLoginForm from './UserLoginForm';
-import AdminLoginForm from '../Login/AdminLoginForm';
+import UserLoginForm from '../login/UserLoginForm';
+import AdminLoginForm from '../login/AdminLoginForm';
 
 const LoginContainer = () => {
   const [selectedRole, setSelectedRole] = useState('usuario');

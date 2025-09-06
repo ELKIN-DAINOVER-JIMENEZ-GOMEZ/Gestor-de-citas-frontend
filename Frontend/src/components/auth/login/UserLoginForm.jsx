@@ -120,12 +120,6 @@ const UserLoginForm = () => {
               Recordarme
             </label>
           </div>
-
-          <div className="text-sm">
-            <a href="#" className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
         </div>
 
         <div>

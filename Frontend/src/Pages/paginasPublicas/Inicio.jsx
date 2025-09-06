@@ -1,6 +1,6 @@
-import img1 from "../../assets/Img1.jpg"; // Asegúrate de tener esta imagen en la ruta correcta
-import tooth from "../../assets/tooh.png"; // Asegúrate de tener esta imagen en la ruta correcta
-import ortodoncia from "../../assets/ortodoncia.png"; // Asegúrate de tener esta imagen en la ruta correcta
+import img1 from "../../assets/Img1.jpg"; 
+import tooth from "../../assets/tooh.png"; 
+import ortodoncia from "../../assets/ortodoncia.png"; 
 import { ServiciosData } from "./Data/ServiciosData";
 import {
   Calendar,
@@ -12,31 +12,25 @@ import {
   MapPin,
   Clock,
 } from "lucide-react";
+import { useScroll } from "../../components/hooks/UseScroll";
 import { Link } from "react-router-dom";
 
 
 const Inicio = () => {
+ const { scrollToServicios } = useScroll();
 
-
-  const ScrollToServicios = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth",// Asegura un desplazamiento suave
-      block: "start"// Alinea la sección al inicio de la vista
-       });
-    }
-  }
+  
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
+     
       <section id="inicio" className="relative min-h-screen flex items-center">
-        {/* Background Image Placeholder */}
+       
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-cyan-800/90 to-blue-700/90">
-          {/* Espacio para tu imagen de fondo */}
+          
           <div className="absolute inset-0 bg-gray-400 flex items-center justify-center">
             <div className="text-center text-white">
               <div className="text-8xl mb-4">🏥</div>
-              <p className="text-2xl font-semibold">
+              <div className="text-2xl font-semibold">
                 <div className="absolute inset-0 bg-gray-400 flex items-center justify-center">
                   <img
                     src={img1}
@@ -44,7 +38,7 @@ const Inicio = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-              </p>
+              </div>
               <p className="text-lg text-gray-200 mt-2">
                 Consultorio / Instalaciones / Equipo
               </p>
@@ -76,7 +70,7 @@ const Inicio = () => {
                   Agendar Cita
                 </Link>
                 <button 
-                  onClick={() => ScrollToServicios("servicios")}
+                  onClick={() => scrollToServicios("servicios")}
                  className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                   Conocer Servicios
                 </button>
