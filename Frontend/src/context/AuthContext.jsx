@@ -24,8 +24,35 @@ export const AuthProvider = ({ children }) => { //el proveedor es un componente 
     setUser(userData);
   };
 
-  const register = async (username, email, password) => {
-    await AuthService.register(username, email, password);
+
+
+    // Función específica para login de administradores
+  const loginAdmin = async (username, password) => {
+    try {
+      const userData = await AuthService.login(username, password);
+      
+      // Verificar si el usuario tiene rol de admin (puedes ajustar esta validación según tu backend)
+      if (!userData.roles || !userData.roles.includes('ROLE_ADMIN')) {
+        throw new Error('No tienes permisos de administrador');
+      }
+      
+      setUser(userData);
+      return userData;
+    } catch (error) {
+      console.error('Error en loginAdmin:', error);
+      throw error;
+    }
+  };
+
+
+
+
+   const register = async (username, email, password, role = 'user') => {
+    return await AuthService.register(username, email, password, role);
+  };
+
+  const registerAdmin = async (username, email, password) => {
+    return await AuthService.register(username, email, password, 'admin');
   };
 
   const logout = () => {
@@ -38,8 +65,16 @@ export const AuthProvider = ({ children }) => { //el proveedor es un componente 
     return <LoadingSpinner />;
   }
 
-  return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, register, logout }}>
+   return (
+    <AuthContext.Provider value={{ 
+      user, 
+      isAuthenticated: !!user, 
+      login, 
+      loginAdmin, // Agregamos la función loginAdmin
+      register, 
+      registerAdmin,
+      logout 
+    }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Send, User, Mail, FileText, AlertCircle, CheckCircle } from 'lucide-react';
+import { Send, User, Mail, FileText, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react';
 import {MensajeApiService} from '../../../services/MensajeApiService';
 import userService from '../../../services/UserService';
+
 
 const GestorMensajesAdmin = () => {
   const [formData, setFormData] = useState({
@@ -71,6 +72,12 @@ const GestorMensajesAdmin = () => {
     setTimeout(() => setNotification(null), 3000);
   }
 }
+
+  const handleRegresar = () => {
+    
+    window.history.back();
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -239,6 +246,17 @@ const GestorMensajesAdmin = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen p-4 sm:p-6 md:p-8">
+      
+      <div className="max-w-4xl mx-auto mb-4">
+        <button
+          onClick={handleRegresar}
+          className="inline-flex items-center space-x-2 px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 border border-gray-300 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-[1.02]"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          <span>Regresar</span>
+        </button>
+      </div>
+
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-4xl mx-auto overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-teal-600 to-cyan-600 px-6 py-4">

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, Edit, Plus, AlertCircle, X } from 'lucide-react';
-import citaApiService from '../../services/CitaApi';
+
+import CitaApi from '../../services/CitaApi';
 
 const CitasAgendadas = () => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -51,11 +52,11 @@ const CitasAgendadas = () => {
     };
 
     // Suscribirse a los cambios en el servicio
-    const unsubscribe = citaApiService.subscribe(handleCitasUpdate);
+    const unsubscribe = CitaApi.subscribe(handleCitasUpdate);
     
     // Cargar las citas por primera vez
     setLoading(true);
-    citaApiService.refreshCitas().catch(err => {
+    CitaApi.refreshCitas().catch(err => {
         setError('No se pudieron cargar las citas. Verifique que el servidor esté corriendo.');
         setLoading(false);
         console.error('Error al cargar citas:', err);

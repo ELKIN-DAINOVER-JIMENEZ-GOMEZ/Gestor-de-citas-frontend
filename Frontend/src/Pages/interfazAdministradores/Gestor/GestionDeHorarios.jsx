@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Trash2, Calendar, Clock, Eye, EyeOff } from 'lucide-react';
-import horarioApiService from '../../../services/HorarioApiService'; // Asegúrate de que la ruta sea correcta
+import { Plus, Trash2, Calendar, Clock, Eye, EyeOff, ArrowLeft} from 'lucide-react';
+import horarioApiService from '../../../services/HorarioApiService'; 
 
-// Componente para gestionar horarios
-// Este componente permite a los administradores agregar, editar y eliminar horarios
-// También muestra una lista de horarios existentes con su estado de disponibilidad
 
 const GestionHorarios = () => {
 
-  const [horarios, setHorarios] = useState([]);// Estado para almacenar los horarios
-  const [isloading, setIsLoading] = useState(true);// Estado para manejar la carga de datos
-   const [error, setError] = useState(null);// Estado para manejar errores 
+  const [horarios, setHorarios] = useState([]);
+  const [isloading, setIsLoading] = useState(true);
+   const [error, setError] = useState(null);
   const [nuevoHorario, setNuevoHorario] = useState({ 
      fecha: '',
      hora: '',
-     disponible: true });// Estado para manejar el nuevo horario que se va a agregar
+     disponible: true });
   
     // Cargar horarios al montar el componente
    useEffect(() => {
@@ -67,17 +64,14 @@ const GestionHorarios = () => {
     }
   };
   
-  const toggleDisponibilidad = async (id, disponibleActual) => {// Cambia el estado de disponibilidad de un horario
+  const toggleDisponibilidad = async (id, disponibleActual) => {
     try {
-      setError(null);//tiene que ser null para que no se muestre un error anterior
-      await horarioApiService.actualizarDisponibilidad(id, !disponibleActual);//!disponibleActual es el estado actual de disponibilidad del horario y lo que se hace es cambiarlo a su opuesto
-      
+      setError(null);
+      await horarioApiService.actualizarDisponibilidad(id, !disponibleActual);
       // Actualizar estado local
       setHorarios(horarios.map(h => 
-        //h.id es el id del horario que se está actualizando y se usa para encontrar el horario específico en la lista de horarios
-        //  h.id === id es la condición que verifica si el id del horario actual coincide con el id del horario que se está actualizando
-        // se usa el operador ternario para actualizar el estado del horario específico
-        h.id === id ? { ...h, disponible: !disponibleActual } : h// se actualiza el estado del horario específico
+        
+        h.id === id ? { ...h, disponible: !disponibleActual } : h
       ));
       
     } catch (error) {
@@ -96,7 +90,7 @@ const GestionHorarios = () => {
       await horarioApiService.eliminarHorario(id);
       
       // Actualizar estado local
-      //(horarios.filter(h => h.id !== id)) // filtra los horarios para eliminar el que coincide con el id proporcionado
+      
       setHorarios(horarios.filter(h => h.id !== id));
       
     } catch (error) {
@@ -106,10 +100,7 @@ const GestionHorarios = () => {
    };
 
   // Agrupar horarios por fecha
-  //acc es un acumulador que se usa para agrupar los horarios por fecha
-  //horario.fecha es la fecha del horario actual que se está iterando
-  //acc[horario.fecha] es el array de horarios para esa fecha específica
-  //horarios.reduce() recorre todos los horarios y los agrupa por fecha
+  
   const horariosPorFecha = horarios.reduce((acc, horario) => {
     if (!acc[horario.fecha]) {
       acc[horario.fecha] = [];
@@ -119,8 +110,6 @@ const GestionHorarios = () => {
   }, {});
 
   // Ordenar fechas
-  //Object.keys(horariosPorFecha) obtiene las fechas únicas de los horarios
-  //sort() ordena las fechas de forma ascendente
   const fechasOrdenadas = Object.keys(horariosPorFecha).sort();
 
    // Función para formatear fecha
@@ -133,6 +122,9 @@ const GestionHorarios = () => {
       day: 'numeric'
     });
   };
+  const handleRegresar = () => {
+    window.history.back();
+  }
 
   if (isloading) {
     return (
@@ -149,7 +141,7 @@ const GestionHorarios = () => {
           <Calendar className="mr-2" size={20} />
           Gestión de Horarios
         </h2>
-        
+         
         {error && (
           <div className="mb-4 bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-700 text-sm">{error}</p>
@@ -161,7 +153,13 @@ const GestionHorarios = () => {
             </button>
           </div>
         )}
-        
+          <button
+          onClick={handleRegresar}
+          className="inline-flex items-center space-x-2 px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 border border-gray-300 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-[1.02]"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          <span>Regresar</span>
+        </button>
         <div className="mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">

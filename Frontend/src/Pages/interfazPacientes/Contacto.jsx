@@ -13,7 +13,7 @@ import GestionMensajesPacientes from "./GestionMensajesPacientes";
   });
 
   const handleQuickMessage = (msg) => {
-    const whatsappUrl = `https://wa.me/573001234567?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/57300123567?text=${encodeURIComponent(
       msg
     )}`;
     window.open(whatsappUrl, "_blank");
