@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Calendar, Clock } from 'lucide-react';
-import citaApiService from '../../services/CitaApi';
+import citaApi from '../../services/CitaApi';
 import horarioApiService from '../../services/HorarioApiService';
 
 const NuevaCita = () => {
@@ -118,7 +118,7 @@ const NuevaCita = () => {
         console.log('Enviando cita:', citaData);
         
         // Enviar a la API usando el servicio
-        const resultado = await citaApiService.crearCita(citaData);
+        const resultado = await citaApi.crearCita(citaData);
         
         console.log('Cita creada exitosamente:', resultado);
         
@@ -134,7 +134,7 @@ const NuevaCita = () => {
         // Redirigir después de 2 segundos
         setTimeout(() => {
           setShowSuccess(false);
-          navigate('/mis-citas');
+          navigate('/paciente/mis-citas');
         }, 2000);
         
       } catch (error) {

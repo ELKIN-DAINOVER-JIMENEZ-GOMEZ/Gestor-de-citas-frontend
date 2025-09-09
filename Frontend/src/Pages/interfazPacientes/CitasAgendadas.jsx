@@ -92,10 +92,17 @@ const CitasAgendadas = () => {
     setSelectedAppointment(null);
   };
 
-  const deleteAppointment = (id) => {
-    setAppointments(appointments.filter(apt => apt.id !== id));
-    setShowEditModal(false);
-    setSelectedAppointment(null);
+  const deleteAppointment = async(id) => {
+    try{
+            await CitaApi.eliminarCita(id);
+    
+         setShowEditModal(false);
+        setSelectedAppointment(null);
+    }catch(error){
+      console.error('Error al eliminar la cita:', error);
+      setError('No se pudo eliminar la cita. Intente nuevamente.');
+    }
+  
   };
 
   const getStatusColor = (status) => {

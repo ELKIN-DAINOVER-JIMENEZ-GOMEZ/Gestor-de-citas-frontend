@@ -36,7 +36,7 @@ const ModalEditarCita = ({ cita, isOpen, onClose, onSave }) => {
 
         <div className="p-6 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Paciente</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Pacient</label>
             <input
               type="text"
               value={formData.paciente}

@@ -125,6 +125,35 @@ async obtenerTodasLasCitas() {
     }
   }
 
+  
+  // Eliminar cita permanentemente
+async eliminarCita(id) {
+  const token = localStorage.getItem('token');
+  
+  try {
+    const response = await fetch(`${this.baseURL}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || 'Error al eliminar la cita');
+    }
+
+    // Actualizar la lista después del cambio
+    await this.refreshCitas();
+    
+    return result;
+  } catch (error) {
+    console.error('Error al eliminar cita:', error);
+    throw error;
+  }
+}
+
   // Refrescar y notificar cambios
   async refreshCitas() {
     try {
