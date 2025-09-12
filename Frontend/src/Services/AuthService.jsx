@@ -51,6 +51,11 @@ const getToken = () => {
 };
 
 
+// Función para verificar si el usuario es admin
+const isAdmin = () => {
+  const user = getCurrentUser();
+  return user && user.roles && user.roles.includes('ROLE_ADMIN');
+};
 
 
 
@@ -62,6 +67,7 @@ const AuthService = {
   logout,
   getCurrentUser,
   getToken,
+  isAdmin
   
 };
 

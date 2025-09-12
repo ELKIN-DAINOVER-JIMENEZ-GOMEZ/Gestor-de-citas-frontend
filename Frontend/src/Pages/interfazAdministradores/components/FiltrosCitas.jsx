@@ -16,7 +16,7 @@ const FiltrosCitas = ({ filtros, setFiltros }) => {
             type="date"
             value={filtros.fecha}
             onChange={(e) => setFiltros(prev => ({ ...prev, fecha: e.target.value }))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
           />
         </div>
         <div>
@@ -24,7 +24,7 @@ const FiltrosCitas = ({ filtros, setFiltros }) => {
           <select
             value={filtros.tipo}
             onChange={(e) => setFiltros(prev => ({ ...prev, tipo: e.target.value }))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
           >
             <option value="">Todos los tipos</option>
             <option value="limpieza">Limpieza General</option>
@@ -38,7 +38,7 @@ const FiltrosCitas = ({ filtros, setFiltros }) => {
           <select
             value={filtros.estado}
             onChange={(e) => setFiltros(prev => ({ ...prev, estado: e.target.value }))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
           >
             <option value="">Todos los estados</option>
             <option value="confirmada">Confirmada</option>

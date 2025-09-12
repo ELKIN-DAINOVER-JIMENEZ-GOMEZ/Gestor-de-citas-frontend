@@ -91,15 +91,16 @@ const DashboardAdmin = () => {
   const transformarCitasParaFrontend = (citasBackend) => {
     return citasBackend.map(cita => ({
       id: cita.id,
-      paciente: `Paciente ${cita.id}`, // Temporal hasta tener datos reales de pacientes
-      telefono: `+57 300 000 ${String(cita.id).padStart(4, '0')}`, // Temporal
+      
       fecha: cita.fecha,
       hora: cita.hora,
       tipo: mapearServicioATipo(cita.servicio),
       servicio: cita.servicio, // Mantener servicio original
       estado: cita.estado.toLowerCase(),
       notas: cita.notas || 'Sin notas adicionales',
-      fechaCreacion: cita.fechaCreacion
+      fechaCreacion: cita.fechaCreacion,
+      paciente: cita.usuario?.username|| "Paciente anonimo",
+      email: cita.usuario?.email || "email no proporcionado",
     }));
   };
 

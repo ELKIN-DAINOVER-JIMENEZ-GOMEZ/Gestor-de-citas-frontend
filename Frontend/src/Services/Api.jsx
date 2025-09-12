@@ -14,7 +14,7 @@ const api = axios.create({// Crea una instancia de axios con la configuración b
 api.interceptors.request.use(// Función que se ejecuta antes de enviar una solicitud
   (config) => {// Agrega el token de acceso al encabezado de autorización si está disponible
     // Verifica si hay un token de acceso en localStorage
-    const token = localStorage.getItem('Token');
+    const token = localStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

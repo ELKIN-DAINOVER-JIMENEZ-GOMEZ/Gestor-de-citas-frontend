@@ -17,7 +17,7 @@ const CitaCard = ({ cita, onEdit, onSendReminder, onMessage }) => {
       <div className="flex justify-between items-start mb-3">
         <div>
           <h3 className="font-semibold text-gray-900">{cita.paciente}</h3>
-          <p className="text-sm text-gray-600">{cita.telefono}</p>
+          <p className="text-sm text-gray-600">{cita.email}</p>
         </div>
         <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getTypeColor(cita.tipo)}`}>
           {cita.tipo.charAt(0).toUpperCase() + cita.tipo.slice(1)}

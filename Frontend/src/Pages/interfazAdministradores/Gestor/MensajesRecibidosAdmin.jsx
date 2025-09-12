@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, Clock, CheckCircle, AlertCircle, Search, Plus, Eye, Calendar, Trash2, RefreshCw } from 'lucide-react';
+import { MessageCircle, Clock, CheckCircle, AlertCircle, Search, Plus, Eye, Calendar, Trash2, RefreshCw, ArrowLeft } from 'lucide-react';
 import { MensajeApiService } from '../../../services/MensajeApiService';
 import { useNavigate } from 'react-router-dom';
 
@@ -222,23 +222,35 @@ const MensajesRecibidosAdmin= () => {
     }
   };
 
+  const handleRegresar = () => {
+    
+    window.history.back();
+  };
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
         <span className="ml-3 text-gray-600">Cargando mensajes...</span>
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8 pb-8">
+      <div className="max-w-6xl mx-auto mb-4">
+        <button
+          onClick={handleRegresar}
+          className="inline-flex items-center mt-4 mt-6 mb-4 mb-6 space-x-2 px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 border border-gray-300 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-[1.02]"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          <span>Regresar</span>
+        </button>
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-7 ">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center mb-4 sm:mb-0">
-              <MessageCircle className="w-6 h-6 text-blue-600 mr-3" />
+              <MessageCircle className="w-6 h-6 text-purple-600 mr-3" />
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">Mis Mensajes</h2>
                 <p className="text-sm text-gray-500">
@@ -256,11 +268,10 @@ const MensajesRecibidosAdmin= () => {
                 Actualizar
               </button>
               <button
-                onClick={() => navigate('/paciente/contacto')}
-                className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                onClick={() => navigate('/administracion/citas')}
+                className="flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
               >
-                <Plus size={16} className="mr-2" />
-                Nuevo Mensaje
+                Pagina principal
               </button>
             </div>
           </div>
@@ -281,7 +292,7 @@ const MensajesRecibidosAdmin= () => {
                   onChange={(e) => setBusqueda(e.target.value)}
                   onKeyDown={manejarBusqueda}
                   placeholder="Buscar por asunto o contenido... (Presiona Enter)"
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 />
               </div>
             </div>
@@ -293,7 +304,7 @@ const MensajesRecibidosAdmin= () => {
               <select
                 value={filtroTipo}
                 onChange={(e) => setFiltroTipo(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
               >
                 <option value="">Todos los tipos</option>
                 {Object.entries(tiposMensajeLabels).map(([value, label]) => (
@@ -307,7 +318,7 @@ const MensajesRecibidosAdmin= () => {
             <button
               onClick={cargarMensajes}
               disabled={isLoading}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50"
             >
               {isLoading ? 'Buscando...' : 'Aplicar Filtros'}
             </button>
@@ -357,10 +368,10 @@ const MensajesRecibidosAdmin= () => {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-2">
-                        <h3 className={`text-lg font-medium ${!mensaje.leido ? 'text-blue-900' : 'text-gray-900'}`}>
+                        <h3 className={`text-lg font-medium ${!mensaje.leido ? 'text-purple-900' : 'text-gray-900'}`}>
                           {mensaje.asunto}
                           {!mensaje.leido && (
-                            <span className="ml-2 inline-block w-2 h-2 bg-blue-500 rounded-full"></span>
+                            <span className="ml-2 inline-block w-2 h-2 bg-purple-500 rounded-full"></span>
                           )}
                         </h3>
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${prioridadColors[mensaje.prioridad]}`}>
@@ -390,7 +401,7 @@ const MensajesRecibidosAdmin= () => {
                     <div className="ml-4 flex items-center gap-2">
                       <button
                         onClick={() => abrirModal(mensaje)}
-                        className="px-3 py-1 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center"
+                        className="px-3 py-1 text-purple-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center"
                       >
                         <Eye size={14} className="mr-1" />
                         Ver
@@ -444,7 +455,7 @@ const MensajesRecibidosAdmin= () => {
                     onClick={() => cambiarPagina(pageNumber)}
                     className={`px-3 py-1 border rounded-md text-sm ${
                       paginaActual === pageNumber
-                        ? 'bg-blue-600 text-white border-blue-600'
+                        ? 'bg-purple-600 text-white border-purple-600'
                         : 'border-gray-300 text-gray-700 hover:bg-gray-50'
                     }`}
                   >

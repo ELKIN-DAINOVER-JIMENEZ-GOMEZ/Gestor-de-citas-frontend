@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Send, User, Mail, FileText, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Send, User, Mail, FileText, AlertCircle, CheckCircle, ArrowLeft, Inbox } from 'lucide-react';
 import {MensajeApiService} from '../../../services/MensajeApiService';
 import userService from '../../../services/UserService';
 
@@ -247,7 +248,7 @@ const GestorMensajesAdmin = () => {
   return (
     <div className="bg-gray-50 min-h-screen p-4 sm:p-6 md:p-8">
       
-      <div className="max-w-4xl mx-auto mb-4">
+      <div className="max-w-4xl mx-auto mb-4 justify-between flex items-center">
         <button
           onClick={handleRegresar}
           className="inline-flex items-center space-x-2 px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 border border-gray-300 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-[1.02]"
@@ -255,11 +256,19 @@ const GestorMensajesAdmin = () => {
           <ArrowLeft className="h-5 w-5" />
           <span>Regresar</span>
         </button>
+        <Link
+          to="/administracion/mensajes-admin"
+          className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold shadow-md hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105"
+        >
+          <Inbox className="h-5 w-5" />
+          <span>Ver Mensajes</span>
+        </Link>
       </div>
+      
 
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-4xl mx-auto overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-cyan-600 px-6 py-4">
+        <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4">
           <div className="flex items-center space-x-3">
             <div className="bg-white bg-opacity-20 p-2 rounded-lg">
               <Send className="h-6 w-6 text-white" />
@@ -448,7 +457,7 @@ const GestorMensajesAdmin = () => {
               <button 
                 type="submit" 
                 disabled={loading} 
-                className="flex-1 bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-teal-700 hover:to-cyan-700 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
+                className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-teal-700 hover:to-cyan-700 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
               >
                 {loading ? (
                   <>
