@@ -226,7 +226,7 @@ const Header = ({ activeSection, setActiveSection, adminName }) => {
           >
             <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4">
               {/* Información del usuario en mobile */}
-              <div className="flex items-center space-x-3 p-3 bg-white bg-opacity-10 rounded-lg mb-4">
+              <div className="flex items-center space-x-3 p-3 bg-white text-purple-700 bg-opacity-10 rounded-lg mb-4">
                 <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
                   <User className="w-5 h-5" />
                 </div>
