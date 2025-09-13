@@ -99,13 +99,13 @@ const Header = ({ activeSection, setActiveSection, adminName }) => {
                 <button
                   key={id}
                   onClick={() => handleNavigation(route, id)}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium ${
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium group ${
                     activeSection === id
-                      ? 'bg-white bg-opacity-20 text-white shadow-md'
-                      : 'hover:bg-white hover:bg-opacity-10'
+                      ? 'bg-white bg-opacity-20 text-purple-700 shadow-md'
+                      : 'hover:bg-white hover:text-purple-700 hover:bg-opacity-10'
                   }`}
                 >
-                  <Icon size={16} />
+                  <Icon size={16} className={activeSection === id ? 'text-purple-700' : 'group-hover:text-purple-700'} />
                   <span>{label}</span>
                 </button>
               ))}
@@ -113,9 +113,14 @@ const Header = ({ activeSection, setActiveSection, adminName }) => {
               {/* Enlace para registrar administrador */}
               <Link
                 to="/administracion/register-admin"
-                className="flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-white hover:bg-opacity-10 text-sm font-medium"
+                onClick={() => setActiveSection('register-admin')}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium group ${
+                  activeSection === 'register-admin'
+                    ? 'bg-white bg-opacity-20 text-purple-700 shadow-md'
+                    : 'hover:bg-white hover:text-purple-700 hover:bg-opacity-10'
+                }`}
               >
-                <UserPlus size={16} />
+                <UserPlus size={16} className={activeSection === 'register-admin' ? 'text-purple-700' : 'group-hover:text-purple-700'} />
                 <span>Registrar Admin</span>
               </Link>
             </nav>
@@ -126,23 +131,28 @@ const Header = ({ activeSection, setActiveSection, adminName }) => {
                 <button
                   key={id}
                   onClick={() => handleNavigation(route, id)}
-                  className={`p-2 rounded-lg transition-all duration-200 ${
+                  className={`p-2 rounded-lg transition-all duration-200 group ${
                     activeSection === id
-                      ? 'bg-white bg-opacity-20 text-white shadow-md'
-                      : 'hover:bg-white hover:bg-opacity-10'
+                      ? 'bg-white bg-opacity-20 text-purple-700 shadow-md'
+                      : 'hover:bg-white hover:text-purple-700 hover:bg-opacity-10'
                   }`}
                   title={label}
                 >
-                  <Icon size={18} />
+                  <Icon size={18} className={activeSection === id ? 'text-purple-700' : 'group-hover:text-purple-700'} />
                 </button>
               ))}
               
               <Link
                 to="/administracion/register-admin"
-                className="p-2 rounded-lg transition-all duration-200 hover:bg-white hover:bg-opacity-10"
+                onClick={() => setActiveSection('register-admin')}
+                className={`p-2 rounded-lg transition-all duration-200 group ${
+                  activeSection === 'register-admin'
+                    ? 'bg-white bg-opacity-20 text-purple-700 shadow-md'
+                    : 'hover:bg-white hover:text-purple-700 hover:bg-opacity-10'
+                }`}
                 title="Registrar Admin"
               >
-                <UserPlus size={18} />
+                <UserPlus size={18} className={activeSection === 'register-admin' ? 'text-purple-700' : 'group-hover:text-purple-700'} />
               </Link>
             </nav>
 
@@ -150,19 +160,19 @@ const Header = ({ activeSection, setActiveSection, adminName }) => {
             <div className="flex items-center space-x-2">
               {/* Notificaciones - siempre visible */}
               <button 
-                className="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-colors"
+                className="p-2 hover:bg-white hover:text-purple-700 hover:bg-opacity-10 rounded-lg transition-colors group"
                 title="Notificaciones"
               >
-                <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Bell className="w-4 h-4 sm:w-5 sm:h-5 group-hover:text-purple-700" />
               </button>
 
               {/* Menú de usuario - desktop y tablet */}
               <div className="hidden sm:block relative" ref={userMenuRef}>
                 <button
                   onClick={toggleUserMenu}
-                  className="flex items-center space-x-2 p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-colors"
+                  className="flex items-center space-x-2 p-2 hover:bg-white hover:text-purple-700 hover:bg-opacity-10 rounded-lg transition-colors"
                 >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white text-purple-700 bg-opacity-20 rounded-full flex items-center justify-center">
                     <User className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <span className="text-sm font-medium hidden md:block max-w-24 truncate">
@@ -207,70 +217,68 @@ const Header = ({ activeSection, setActiveSection, adminName }) => {
         </div>
       </header>
 
-      {/* Menú móvil/tablet como overlay */}
+      {/* Menú móvil/tablet desplegable */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden xl:hidden fixed inset-0 z-[60]">
-          {/* Overlay de fondo */}
-          <div
-            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          
-          {/* Panel del menú */}
+        <div className="lg:hidden xl:hidden relative z-40">
           <div 
             ref={mobileMenuRef}
-            className="absolute top-14 sm:top-16 left-0 right-0 bottom-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-xl transform transition-all duration-300 ease-out"
+            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-xl border-b border-white border-opacity-20 transform transition-all duration-300 ease-out animate-in slide-in-from-top-2"
           >
-            <div className="h-full overflow-y-auto">
-              <div className="p-4 space-y-2">
-                {/* Información del usuario en mobile */}
-                <div className="flex items-center space-x-3 p-4 bg-white bg-opacity-10 rounded-lg mb-4">
-                  <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                    <User className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-medium truncate">Dr. {adminName}</p>
-                    <p className="text-xs opacity-80">Administrador</p>
-                  </div>
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4">
+              {/* Información del usuario en mobile */}
+              <div className="flex items-center space-x-3 p-3 bg-white bg-opacity-10 rounded-lg mb-4">
+                <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5" />
                 </div>
-
-                {/* Enlaces de navegación */}
-                <div className="space-y-1">
-                  {navigationItems.map(({ id, label, icon: Icon, route }) => (
-                    <button
-                      key={id}
-                      onClick={() => handleNavigation(route, id)}
-                      className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-all duration-200 rounded-lg ${
-                        activeSection === id
-                          ? 'bg-white bg-opacity-20 font-medium shadow-md border-l-4 border-white'
-                          : 'hover:bg-white hover:bg-opacity-10'
-                      }`}
-                    >
-                      <Icon size={20} />
-                      <span className="font-medium">{label}</span>
-                    </button>
-                  ))}
-
-                  {/* Registrar Admin */}
-                  <Link
-                    to="/administracion/register-admin"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-white hover:bg-opacity-10 transition-all duration-200 rounded-lg"
-                  >
-                    <UserPlus size={20} />
-                    <span className="font-medium">Registrar Admin</span>
-                  </Link>
+                <div className="min-w-0 flex-1">
+                  <p className="font-medium truncate">Dr. {adminName}</p>
+                  <p className="text-xs opacity-80">Administrador</p>
                 </div>
+              </div>
 
-                {/* Botón cerrar sesión */}
-                <div className="pt-6 mt-6 border-t border-white border-opacity-20">
+              {/* Enlaces de navegación */}
+              <div className="space-y-2">
+                {navigationItems.map(({ id, label, icon: Icon, route }) => (
                   <button
-                    onClick={handleLogout}
-                    className="w-full bg-white text-purple-800 px-4 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 shadow-md"
+                    key={id}
+                    onClick={() => handleNavigation(route, id)}
+                    className={`w-full flex items-center space-x-3 px-3 py-3 text-left transition-all duration-200 rounded-lg group ${
+                      activeSection === id
+                        ? 'bg-white text-purple-700 bg-opacity-20 font-medium shadow-md border-l-4 border-white'
+                        : 'hover:bg-white hover:text-purple-700 hover:bg-opacity-10'
+                    }`}
                   >
-                    Cerrar Sesión
+                    <Icon size={20} className={activeSection === id ? 'text-purple-700' : 'group-hover:text-purple-700'} />
+                    <span className="font-medium">{label}</span>
                   </button>
-                </div>
+                ))}
+
+                {/* Registrar Admin */}
+                <Link
+                  to="/administracion/register-admin"
+                  onClick={() => {
+                    setActiveSection('register-admin');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center space-x-3 px-3 py-3 text-left transition-all duration-200 rounded-lg group ${
+                    activeSection === 'register-admin'
+                      ? 'bg-white text-purple-700 bg-opacity-20 font-medium shadow-md border-l-4 border-white'
+                      : 'hover:bg-white hover:text-purple-700 hover:bg-opacity-10'
+                  }`}
+                >
+                  <UserPlus size={20} className={activeSection === 'register-admin' ? 'text-purple-700' : 'group-hover:text-purple-700'} />
+                  <span className="font-medium">Registrar Admin</span>
+                </Link>
+              </div>
+
+              {/* Botón cerrar sesión */}
+              <div className="pt-4 mt-4 border-t border-white border-opacity-20">
+                <button
+                  onClick={handleLogout}
+                  className="w-full bg-white text-purple-800 px-4 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 shadow-md"
+                >
+                  Cerrar Sesión
+                </button>
               </div>
             </div>
           </div>

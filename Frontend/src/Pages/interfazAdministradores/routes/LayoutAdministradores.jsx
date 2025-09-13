@@ -10,17 +10,18 @@ import MensajesAdmin from '../Gestor/GestorMensajesAdmin'
 import MensajesRecibidosAdmin from '../Gestor/MensajesRecibidosAdmin'
 function LayoutAdministradores() {
   return (
-    <div>
-        <Routes>
-            <Route path="/" element={<RutaAdministracion />}/>
-            <Route path="citas" element={<DashboardAdmin />} />
+     <Routes>
+      
+      <Route path="/" element={<RutaAdministracion />}>
+        {/* The index route defaults to the citas dashboard */}
+        <Route index element={<DashboardAdmin />} /> 
+        <Route path="citas" element={<DashboardAdmin />} />
         <Route path="horarios" element={<GestionDeHorarios />} />
         <Route path="mensajes" element={<MensajesAdmin />} />
-            <Route path="register-admin" element={<RegisterAdminForm/>} />
-            <Route path="mensajes-admin" element={<MensajesRecibidosAdmin />} />
-          
-        </Routes>
-    </div>
+        <Route path="register-admin" element={<RegisterAdminForm />} />
+        <Route path="mensajes-admin" element={<MensajesRecibidosAdmin />} />
+      </Route>
+    </Routes>
   )
 }
 
