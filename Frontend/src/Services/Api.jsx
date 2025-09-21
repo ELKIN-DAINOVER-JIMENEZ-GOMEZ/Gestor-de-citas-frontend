@@ -1,7 +1,7 @@
 // services/api.js
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.REACT_APP_API_URL || 'http://localhost:8080/api';//Se obtiene la URL base de la API desde las variables de entorno, o se usa un valor por defecto
+const API_BASE_URL = 'https://gestor-de-citas-backend-24.onrender.com/api';//Se obtiene la URL base de la API desde las variables de entorno, o se usa un valor por defecto
 
 const api = axios.create({// Crea una instancia de axios con la configuración base
  baseURL: API_BASE_URL,// Define la URL base para todas las solicitudes
