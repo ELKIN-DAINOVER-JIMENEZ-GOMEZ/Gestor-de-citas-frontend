@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Send, User, Mail, FileText, AlertCircle, CheckCircle, ArrowLeft, Inbox } from 'lucide-react';
 import {MensajeApiService} from '../../../Services/MensajeApiService';
-import userService from '../../../services/UserService';
+import userService from '../../../Services/UserService';
 
 
 const GestorMensajesAdmin = () => {

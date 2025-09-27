@@ -15,8 +15,8 @@ RUN npm ci
 COPY Frontend/ .
 
 # DEBUG: Verificar qué archivos se copiaron
-RUN echo "=== Contenido de src/services/ ==="
-RUN ls -la src/services/ || echo "Carpeta services no existe"
+RUN echo "=== Contenido de src/Services/ ==="
+RUN ls -la src/Services/ || echo "Carpeta services no existe"
 RUN echo "=== Contenido de src/context/ ==="
 RUN ls -la src/context/ || echo "Carpeta context no existe"
 RUN echo "=== Import en AuthContext.jsx ==="
