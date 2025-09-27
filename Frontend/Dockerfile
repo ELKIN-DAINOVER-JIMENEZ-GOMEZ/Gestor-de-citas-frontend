@@ -1,4 +1,4 @@
-
+# Dockerfile
 # Etapa 1: Build de la aplicación
 FROM node:18-alpine AS build
 
@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instalar dependencias
-RUN npm ci 
+RUN npm ci --only=production
 
 # Copiar el código fuente
 COPY . .
@@ -26,7 +26,10 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Copiar configuración personalizada de nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Exponer puerto 5173
+# Remover la configuración por defecto de nginx
+RUN rm /etc/nginx/conf.d/default.conf.bak 2>/dev/null || true
+
+# Exponer puerto (puerto por defecto de Render)
 EXPOSE 5173
 
 # Comando para iniciar nginx
