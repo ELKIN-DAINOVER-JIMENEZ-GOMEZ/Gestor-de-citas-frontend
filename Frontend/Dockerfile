@@ -1,7 +1,7 @@
 
 # Dockerfile
 # Etapa 1: Build de la aplicación
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 # Establecer directorio de trabajo
 WORKDIR /app
@@ -10,7 +10,7 @@ WORKDIR /app
 COPY Frontend/package*.json ./
 
 # Instalar dependencias
-RUN npm ci --only=production
+RUN npm ci 
 
 # Copiar el código fuente desde Frontend/
 COPY Frontend/ .
