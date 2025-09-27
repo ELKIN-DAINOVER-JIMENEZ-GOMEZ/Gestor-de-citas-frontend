@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import AuthService from '../services/AuthService.jsx';
+import AuthService from '../Services/AuthService.jsx';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 
 // 1. Crear el Contexto
