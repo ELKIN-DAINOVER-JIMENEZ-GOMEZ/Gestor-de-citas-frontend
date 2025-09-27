@@ -14,6 +14,16 @@ RUN npm ci
 # Copiar el código fuente desde Frontend/
 COPY Frontend/ .
 
+# DEBUG: Verificar qué archivos se copiaron
+RUN echo "=== Contenido de src/services/ ==="
+RUN ls -la src/services/ || echo "Carpeta services no existe"
+RUN echo "=== Contenido de src/context/ ==="
+RUN ls -la src/context/ || echo "Carpeta context no existe"
+RUN echo "=== Import en AuthContext.jsx ==="
+RUN head -5 src/context/AuthContext.jsx || echo "AuthContext.jsx no existe"
+RUN echo "=== Estructura completa de src/ ==="
+RUN find src/ -name "*.jsx" -o -name "*.js" | head -20
+
 # Construir la aplicación para producción
 RUN npm run build
 
