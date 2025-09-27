@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthService from '../../services/AuthService'; // Asegúrate de que la ruta sea
+import AuthService from '../../Services/AuthService'; // Asegúrate de que la ruta sea
 import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

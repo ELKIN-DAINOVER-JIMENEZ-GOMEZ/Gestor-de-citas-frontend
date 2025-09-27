@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, Clock, CheckCircle, AlertCircle, Search, Plus, Eye, Calendar, Trash2, RefreshCw, ArrowLeft } from 'lucide-react';
-import { MensajeApiService } from '../../../services/MensajeApiService';
+import { MensajeApiService } from '../../../Services/MensajeApiService';
 import { useNavigate } from 'react-router-dom';
 
 const MensajesRecibidosAdmin= () => {

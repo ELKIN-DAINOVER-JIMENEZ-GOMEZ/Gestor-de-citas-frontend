@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './../components/Header';
-import AuthService from '../../../services/AuthService'; 
+import AuthService from '../../../Services/AuthService'; 
 
 function RutaAdministracion() {
   const [activeSection, setActiveSection] = useState('citas');

@@ -4,8 +4,8 @@ import GestionCitas from './Gestor/GestionDeCitas';
 import GestionHorarios from './Gestor/GestionDeHorarios';
 import ModalEditarCita from './modals/ModalEditarCita';
 import ModalMensaje from './modals/ModalMensaje';
-import citaApiService from '../../services/CitaApi'; // Importar el servicio
-import AuthService from '../../services/AuthService';
+import citaApiService from '../../Services/CitaApi'; // Importar el servicio
+import AuthService from '../../Services/AuthService';
 
 const DashboardAdmin = () => {
   const [activeSection, setActiveSection] = useState('citas');

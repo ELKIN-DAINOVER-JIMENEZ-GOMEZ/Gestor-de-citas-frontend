@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, Edit, Plus, AlertCircle, X } from 'lucide-react';
 
-import CitaApi from '../../services/CitaApi';
+import CitaApi from '../../Services/CitaApi';
 
 const CitasAgendadas = () => {
   const [showEditModal, setShowEditModal] = useState(false);

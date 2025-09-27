@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Phone, MessageCircle, Mail, MapPin, Clock, Send } from "lucide-react";
-import {MensajeApiService} from "../../services/MensajeApiService";
+import {MensajeApiService} from "../../Services/MensajeApiService";
 import GestionMensajesPacientes from "./GestionMensajesPacientes";
 
   const Contacto = () => {

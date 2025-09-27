@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import AuthService from '../../../services/AuthService'; // Asegúrate de que la ruta sea correcta
+import AuthService from '../../../Services/AuthService'; // Asegúrate de que la ruta sea correcta
 
 const RegisterAdminForm = () => {
   const [username, setUsername] = useState('');
