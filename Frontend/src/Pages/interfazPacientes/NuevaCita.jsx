@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Calendar, Clock } from 'lucide-react';
 import citaApi from '../../Services/CitaApi';
-import horarioApiService from '../../services/HorarioApiService';
+import horarioApiService from '../../Services/HorarioApiService';
 
 const NuevaCita = () => {
   const navigate = useNavigate();

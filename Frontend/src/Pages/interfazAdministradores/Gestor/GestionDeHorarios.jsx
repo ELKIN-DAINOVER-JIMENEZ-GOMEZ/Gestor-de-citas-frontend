@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Calendar, Clock, Eye, EyeOff, ArrowLeft} from 'lucide-react';
-import horarioApiService from '../../../services/HorarioApiService'; 
+import horarioApiService from '../../../Services/HorarioApiService'; 
 
 
 const GestionHorarios = () => {
