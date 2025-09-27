@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Crear instancia de axios con configuración base
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api/users',
+  baseURL: 'https://gestor-de-citas-backend-24.onrender.com/api/users',
   headers: {
     'Content-Type': 'application/json'
   }

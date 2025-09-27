@@ -29,13 +29,13 @@ function App() {
 
             <Route path="/" element={ <><Header/> <Inicio/></>}/>
             
-            
+             
             
             {/* Rutas Protegidas */}
             <Route element={<ProtectedRoute />}>
-             
-            <Route path="/Paciente/*" element={<RutasInterfazPaciente />} />
              <Route path="/administracion/*" element={<LayoutAdministradores />} />
+            <Route path="/Paciente/*" element={<RutasInterfazPaciente />} />
+            
            
               <Route path="/dashboard" element={<> <Header/> <DashboardPage /></>} />
               <Route path="/profile" element={<><Header/><ProfilePage /> </>} />

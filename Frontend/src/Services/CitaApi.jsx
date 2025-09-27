@@ -1,7 +1,7 @@
 // services/CitaApiService.js
 class CitaApi{
   constructor() {
-    this.baseURL = 'http://localhost:8080/api/citas';
+    this.baseURL = 'https://gestor-de-citas-backend-24.onrender.com/api/citas';
     this.subscribers = new Set();//conjunto de funciones callback que se llamarán cuando haya cambios en las citas
   }
 

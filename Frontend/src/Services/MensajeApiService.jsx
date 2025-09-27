@@ -1,7 +1,7 @@
 // services/mensajeService.js
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/api/mensajes";
+const BASE_URL = "https://gestor-de-citas-backend-24.onrender.com/api/mensajes";
 
 // Configurar interceptor para agregar token automáticamente
 const apiClient = axios.create({

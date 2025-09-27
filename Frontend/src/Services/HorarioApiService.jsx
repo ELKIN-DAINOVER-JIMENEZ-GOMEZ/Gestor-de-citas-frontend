@@ -1,7 +1,7 @@
 // services/HorarioApiService.js
 class HorarioApiService {
   constructor() {
-    this.baseURL = 'http://localhost:8080/api/horarios';
+    this.baseURL = 'https://gestor-de-citas-backend-24.onrender.com/api/horarios';
   }
 
   // Crear nuevo horario
